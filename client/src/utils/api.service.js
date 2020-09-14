@@ -3,7 +3,7 @@ import axios from "axios";
 export default async text => {
   try {
     const res = await axios.post("/api/df_text_query", { text });
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     return {
       user: "bot",

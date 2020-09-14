@@ -6,26 +6,15 @@ import sendMessageAPI from "../../utils/api.service";
 export default class Chat extends Component {
   constructor(props) {
     super(props);
-    {
-      navigator.language === "fr-FR"
-        ? (this.state = {
-            messages: [
-              {
-                user: "bot",
-                message:
-                  "Bonjour,je suis la Chatbot de la Champagne,à votre écoute!"
-              }
-            ]
-          })
-        : (this.state = {
-            messages: [
-              {
-                user: "bot",
-                message: "Hi!"
-              }
-            ]
-          });
-    }
+
+    this.state = {
+      messages: [
+        {
+          user: "bot",
+          message: "Bonjour,je suis la Chatbot de la Champagne,à votre écoute!",
+        },
+      ],
+    };
 
     this.messages = React.createRef();
     this.sendMessage = this.sendMessage.bind(this);
@@ -33,14 +22,14 @@ export default class Chat extends Component {
   }
 
   sendMessage(message) {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       prevState.messages.push({ message, user: "human" });
       return { ...prevState };
     });
 
-    sendMessageAPI(message).then(result => {
+    sendMessageAPI(message).then((result) => {
       this.setState(
-        prevState => {
+        (prevState) => {
           prevState.messages.push(result);
           return { ...prevState };
         },
